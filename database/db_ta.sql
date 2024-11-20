@@ -257,8 +257,8 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `penguji` (
   `penguji_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `jadwal_id` int(11) DEFAULT NULL,
-  `dosen_id` int(11) DEFAULT NULL,
   `is_primary_dosen` tinyint(1) DEFAULT 0,
   `role` enum('penguji utama','penguji pendamping') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -463,7 +463,7 @@ ALTER TABLE `password_reset_tokens`
 ALTER TABLE `penguji`
   ADD PRIMARY KEY (`penguji_id`),
   ADD KEY `jadwal_id` (`jadwal_id`),
-  ADD KEY `dosen_id` (`dosen_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `proposals`
@@ -656,7 +656,7 @@ ALTER TABLE `nilai`
 --
 ALTER TABLE `penguji`
   ADD CONSTRAINT `penguji_ibfk_1` FOREIGN KEY (`jadwal_id`) REFERENCES `jadwal` (`jadwal_id`),
-  ADD CONSTRAINT `penguji_ibfk_2` FOREIGN KEY (`dosen_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `penguji_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Constraints for table `proposals`
