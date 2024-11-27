@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\aktivitasController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,3 +21,7 @@ misal file yang dituju aktivitas.blade.php ada di folder dashboard, berarti nuli
 */
 
 Route::get('/dashboard/aktivitas', [aktivitasController::class, 'mahasiswa_index'])->name('dashboard.aktivitas');
+Route::get('/dashboard/nilai', [NilaiController::class, 'index'])->name('dashboard.nilai.index');
+Route::post('/dashboard/nilai', [NilaiController::class, 'store'])->name('nilai.store');
+Route::put('/dashboard/nilai/{id}', [NilaiController::class, 'update'])->name('nilai.update');
+Route::delete('/dashboard/nilai/{id}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
