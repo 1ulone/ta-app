@@ -15,11 +15,16 @@ class aktivitasController extends Controller
     jadwal aktivitas, 2 dashboard itu punya fungsi (function) nya sendiri
     contoh:
     --------------------------------------------------------------------*/
-    public function mahasiswa_index()
+    public function jadwalMahasiswa()
     {
-        //Melakukan relasi antar tabel mahasiswa, aktivitas,
-        //dan aktivitas_mahasiswa
-        $aktivitas = Mahasiswa::with('aktivitasList')->get();
-        return view('dashboard.aktivitas', ['aktivitas' => $aktivitas]);
+        $jadwal = Aktivitas::where('role', 'mahasiswa')->get();
+        return view('mahasiswa.dashboard', compact('jadwal'));
+    }
+
+    // Menampilkan jadwal aktivitas di dashboard dosen
+    public function jadwalDosen()
+    {
+        $jadwal = Aktivitas::where('role', 'dosen')->get();
+        return view('dosen.dashboard', compact('jadwal'));
     }
 }
