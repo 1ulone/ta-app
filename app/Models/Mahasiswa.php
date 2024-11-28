@@ -12,8 +12,7 @@ class Mahasiswa extends Model
     protected $primaryKey = 'mahasiswa_id'; //nama id/primary key tabel
 
     //isi tabel (kolom yang dapat diisi)
-    protected $fillable = [
-    ];
+    protected $fillable = ['user_id', 'NIM', 'jurusan', 'aktif_semester' ];
 
 
     /*-------------------------------------------------------
@@ -31,4 +30,9 @@ class Mahasiswa extends Model
     {
         return $this->hasManyThrough(Aktivitas::class, AktivitasMahasiswa::class, 'mahasiswa_id', 'aktivitas_id', 'mahasiswa_id', 'aktivitas_id');
     }
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
+
 }

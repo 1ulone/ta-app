@@ -18,17 +18,27 @@
     <h3>Tambah Nilai</h3>
     <form action="{{ route('nilai.store') }}" method="POST">
         @csrf
+
+        <label for="mahasiswa_id">Mahasiswa:</label>
+        <select name="mahasiswa_id" id="mahasiswa_id" required>
+            @foreach($mahasiswa as $m)
+                <option value="{{ $m->id }}">
+                    {{ $m->NIM ?? 'ID: ' . $m->id }}
+                </option>
+            @endforeach
+        </select><br><br>
+
         <label for="jadwal_id">Jadwal:</label>
         <select name="jadwal_id" id="jadwal_id" required>
-            @foreach($jadwal as $jadwal)
-                <option value="{{ $jadwal->id }}">{{ $jadwal->name }}</option>
+            @foreach($jadwal as $j)
+                <option value="{{ $j->id }}">{{ $j->name }}</option>
             @endforeach
         </select><br><br>
 
         <label for="penguji_id">Penguji:</label>
         <select name="penguji_id" id="penguji_id" required>
-            @foreach($penguji as $penguji)
-                <option value="{{ $penguji->id }}">{{ $penguji->name }}</option>
+            @foreach($penguji as $p)
+                <option value="{{ $p->id }}">{{ $p->name }}</option>
             @endforeach
         </select><br><br>
 
@@ -41,12 +51,12 @@
         <button type="submit">Simpan Nilai</button>
     </form>
 
-    <!-- Tabel Data Nilai -->
     <h3>Data Nilai</h3>
     <table border="1">
         <thead>
             <tr>
                 <th>No</th>
+                <th>Mahasiswa</th>
                 <th>Jadwal</th>
                 <th>Penguji</th>
                 <th>Jumlah</th>
@@ -58,16 +68,17 @@
             @foreach($nilai as $n)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>{{ $n->mahasiswa->NIM ?? 'Mahasiswa ID: ' . $n->mahasiswa->id }}</td>
                     <td>{{ $n->jadwal->name }}</td>
                     <td>{{ $n->penguji->name }}</td>
                     <td>{{ $n->jumlah }}</td>
                     <td>{{ $n->catatan }}</td>
                     <td>
-                        <a href="{{ route('nilai.update', $n->id) }}">Edit</a> |
+                        <a href="{{ route('nilai.edit', $n->id) }}">Edit</a> |
                         <form action="{{ route('nilai.destroy', $n->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Hapus</button>
+                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
                         </form>
                     </td>
                 </tr>

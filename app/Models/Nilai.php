@@ -6,21 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Nilai extends Model
 {
-    // Tentukan nama tabel secara eksplisit
-    protected $table = 'nilai'; // Nama tabel tanpa 's'
+    protected $table = 'nilai'; // Pastikan tabel yang sesuai
+    protected $fillable = ['jadwal_id', 'penguji_id', 'mahasiswa_id', 'jumlah', 'catatan'];
 
-    // Tentukan kolom yang dapat diisi
-    protected $fillable = ['jadwal_id', 'penguji_id', 'jumlah', 'catatan'];
-
-    // Relasi dengan Jadwal
+    // Relasi dengan model lain
     public function jadwal()
     {
-        return $this->belongsTo(Jadwal::class); // Relasi dengan model Jadwal
+        return $this->belongsTo(Jadwal::class);
     }
 
-    // Relasi dengan Penguji
     public function penguji()
     {
-        return $this->belongsTo(Penguji::class); // Relasi dengan model Penguji
+        return $this->belongsTo(Penguji::class);
+    }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class);
     }
 }
