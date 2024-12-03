@@ -9,14 +9,16 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #121212;
+            color: #e0e0e0;
         }
 
         header {
-            background: linear-gradient(to right, #ff7a00, #ff4e00);
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
             color: white;
             padding: 20px;
             text-align: center;
+            text-shadow: 0 0 10px cyan;
         }
 
         .container {
@@ -26,17 +28,18 @@
 
         /* Sidebar */
         .sidebar {
-            background-color: #fff;
+            background-color: #1c1c1c;
             padding: 20px;
             width: 250px;
-            border-right: 1px solid #ddd;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            border-right: 1px solid #333;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
         }
 
         .sidebar h2 {
-            color: #ff7a00;
+            color: #00ffff;
             font-size: 24px;
             margin-bottom: 20px;
+            text-shadow: 0 0 8px cyan;
         }
 
         .sidebar ul {
@@ -50,24 +53,26 @@
 
         .sidebar ul li a {
             text-decoration: none;
-            color: white;
+            color: #00ffff;
             font-weight: bold;
             display: block;
             padding: 10px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            background: rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
         .sidebar ul li a:hover {
-            background-color: #ff7a00;
-            color: white;
+            background-color: #00ffff;
+            color: #121212;
+            text-shadow: 0 0 10px cyan;
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: #121212;
         }
 
         .form-container, .table-container {
@@ -82,43 +87,69 @@
         table th, table td {
             text-align: left;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #333;
         }
 
         table th {
-            background-color: #ff7a00;
+            background-color: #0f2027;
             color: white;
+            text-shadow: 0 0 5px cyan;
+        }
+
+        table td {
+            background-color: #1c1c1c;
         }
 
         button, a {
-            background-color: #ff4e00;
-            color: white;
+            background-color: #00ffff;
+            color: #121212;
             border: none;
             padding: 10px 15px;
             text-decoration: none;
             font-size: 14px;
             border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px cyan;
         }
 
         button:hover, a:hover {
-            background-color: #ff7a00;
+            background-color: #00b3b3;
+            box-shadow: 0 0 10px cyan;
         }
 
         form label {
             margin-top: 10px;
             font-weight: bold;
+            color: #00ffff;
         }
 
         form input, form select, form textarea {
             width: 100%;
             padding: 10px;
             margin: 5px 0 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #333;
             border-radius: 5px;
+            background-color: #1c1c1c;
+            color: #e0e0e0;
+        }
+
+        form input:focus, form select:focus, form textarea:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 10px cyan;
         }
 
         form button {
             width: 100%;
+        }
+
+        h3 {
+            color: #00ffff;
+            text-shadow: 0 0 10px cyan;
+        }
+
+        .table-container h3, .form-container h3 {
+            text-shadow: 0 0 8px cyan;
         }
     </style>
 </head>
@@ -144,7 +175,7 @@
     <div class="main-content">
         <!-- Menampilkan Pesan Sukses -->
         @if (session('success'))
-            <p style="color: green;">{{ session('success') }}</p>
+            <p style="color: lime;">{{ session('success') }}</p>
         @endif
 
         <!-- Form tambah nilai -->
